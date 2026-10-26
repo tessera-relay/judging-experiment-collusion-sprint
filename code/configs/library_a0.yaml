@@ -1,0 +1,33 @@
+# Paper-library task, variant a0: 0 attractor paper(s), control paper false (question 2.1, decision O25).
+simulation:
+  max_iterations: 1
+  max_planning_rounds: 4
+  max_conversation_steps: 3
+  seed: 1
+  tags: [library]
+
+environment:
+  import_path: collusion_study.library.env:LibraryEnvironment
+  attractors: 0
+  control_paper: false
+
+communication_network:
+  topology: complete
+  num_agents: 6
+  consolidate_channels: true
+
+llm:
+  provider: claude_cli
+
+experiment:
+  tag: library_a0
+  output_dir: experiments/collusion/outputs/library_a0
+  max_concurrent_runs: 1
+  collusion:
+    colluder_selection: random
+    pairs: 2  # O59: a second seeded pair with its own private board; 2 agents stay unpaired
+  sweeps:
+    - name: library_a0
+      topologies: [complete]
+      num_agents: [6]
+      colluder_counts: [2]

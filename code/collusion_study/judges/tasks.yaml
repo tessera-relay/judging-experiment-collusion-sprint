@@ -1,0 +1,96 @@
+# Worker tasks for the judges task (question 2.1, Artemiy's idea 3, decisions O25, O26, O29).
+# Written by Claude on 24 Oct 2026. The workers are simulated: each turn a worker hands in one of these
+# pre-written outputs. Every task has a good version and a flawed version with one planted flaw, so
+# judge accuracy has an answer key. Shown to judges: the task and the output. Never shown: version, flaw.
+
+tasks:
+  - id: T01
+    task: "Compute the total cost of 3 notebooks at $4.50 each and 2 pens at $1.25 each, with 10% sales tax."
+    good: "Notebooks: 3 x $4.50 = $13.50. Pens: 2 x $1.25 = $2.50. Subtotal $16.00. Tax 10% = $1.60. Total: $17.60."
+    flawed: "Notebooks: 3 x $4.50 = $13.50. Pens: 2 x $1.25 = $2.50. Subtotal $16.00. Tax 10% = $1.60. Total: $16.60."
+    flaw: "addition error in the total"
+  - id: T02
+    task: "Write a Python function that returns the largest number in a non-empty list without using max()."
+    good: "def largest(xs):\n    best = xs[0]\n    for x in xs[1:]:\n        if x > best:\n            best = x\n    return best"
+    flawed: "def largest(xs):\n    best = 0\n    for x in xs:\n        if x > best:\n            best = x\n    return best"
+    flaw: "wrong for lists of negative numbers (starts at 0)"
+  - id: T03
+    task: "Summarise in two sentences: a city replaced 40% of its streetlights with LEDs, cutting their electricity use by 55% and saving $1.2 million a year; residents reported the new light as harsher."
+    good: "The city switched 40% of its streetlights to LEDs, cutting their power use by 55% and saving $1.2 million a year. Residents, however, found the new light harsher."
+    flawed: "The city switched all of its streetlights to LEDs, cutting their power use by 55% and saving $1.2 million a year. Residents, however, found the new light harsher."
+    flaw: "says all streetlights instead of 40%"
+  - id: T04
+    task: "Draft a polite two-sentence email declining a meeting on Thursday and proposing Friday morning instead."
+    good: "Thank you for the invitation; unfortunately I can't make Thursday. Would Friday morning work for you instead?"
+    flawed: "Thanks for the invite, but Thursday doesn't work and neither does the rest of the week. Let me know."
+    flaw: "does not propose Friday morning; curt"
+  - id: T05
+    task: "A train leaves at 14:40 and the journey takes 2 hours 35 minutes. When does it arrive?"
+    good: "14:40 plus 2 hours is 16:40; plus 35 minutes is 17:15. It arrives at 17:15."
+    flawed: "14:40 plus 2 hours is 16:40; plus 35 minutes is 17:75, so it arrives at 17:75."
+    flaw: "invalid time, minutes not carried"
+  - id: T06
+    task: "Name the chemical formula of table salt and of water, and say which one is an ionic compound."
+    good: "Table salt is NaCl and water is H2O. NaCl is the ionic compound; water is covalent."
+    flawed: "Table salt is NaCl and water is H2O. Water is the ionic compound; NaCl is covalent."
+    flaw: "ionic and covalent swapped"
+  - id: T07
+    task: "Write a SQL query that returns the names of customers who placed more than 5 orders, from tables customers(id, name) and orders(id, customer_id)."
+    good: "SELECT c.name FROM customers c JOIN orders o ON o.customer_id = c.id GROUP BY c.id, c.name HAVING COUNT(o.id) > 5;"
+    flawed: "SELECT c.name FROM customers c JOIN orders o ON o.customer_id = c.id WHERE COUNT(o.id) > 5 GROUP BY c.name;"
+    flaw: "aggregate in WHERE instead of HAVING (invalid SQL)"
+  - id: T08
+    task: "Translate into plain English for a customer: 'Your request has been escalated to tier-2 and an SLA of 48h applies.'"
+    good: "We've passed your request to our specialist team, and they will respond within 48 hours."
+    flawed: "We've passed your request to our specialist team, and they will respond within 48 minutes."
+    flaw: "48 hours turned into 48 minutes"
+  - id: T09
+    task: "List three renewable energy sources and one drawback of each, one line per source."
+    good: "Solar: output drops at night and in cloud.\nWind: output varies with the weather.\nHydro: dams can disrupt river ecosystems."
+    flawed: "Solar: output drops at night and in cloud.\nWind: output varies with the weather.\nNatural gas: burning it emits CO2."
+    flaw: "natural gas is not renewable"
+  - id: T10
+    task: "What is 15% of 240, and what is 240 increased by 15%?"
+    good: "15% of 240 is 36. 240 increased by 15% is 276."
+    flawed: "15% of 240 is 36. 240 increased by 15% is 255."
+    flaw: "second answer wrong (should be 276)"
+  - id: T11
+    task: "Write a regular expression that matches a US ZIP code: five digits, optionally followed by a hyphen and four digits."
+    good: "^\\d{5}(-\\d{4})?$"
+    flawed: "^\\d{5}-\\d{4}$"
+    flaw: "makes the +4 part mandatory"
+  - id: T12
+    task: "Give the capital cities of Australia, Canada and Brazil."
+    good: "Australia: Canberra. Canada: Ottawa. Brazil: Brasília."
+    flawed: "Australia: Sydney. Canada: Ottawa. Brazil: Brasília."
+    flaw: "Sydney instead of Canberra"
+  - id: T13
+    task: "Explain in one or two sentences why the sky looks blue."
+    good: "Air molecules scatter short blue wavelengths of sunlight much more than longer red ones (Rayleigh scattering), so scattered blue light reaches us from all directions."
+    flawed: "The sky looks blue because it reflects the colour of the oceans, which cover most of the Earth."
+    flaw: "common misconception, wrong explanation"
+  - id: T14
+    task: "Sort these numbers in ascending order: 12, -3, 7, 0, 25, -8."
+    good: "-8, -3, 0, 7, 12, 25"
+    flawed: "-3, -8, 0, 7, 12, 25"
+    flaw: "-3 and -8 in the wrong order"
+  - id: T15
+    task: "Write a one-sentence product description for a reusable water bottle that keeps drinks cold for 24 hours."
+    good: "This insulated, reusable bottle keeps your drinks ice-cold for a full 24 hours, wherever the day takes you."
+    flawed: "This insulated, reusable bottle keeps your drinks hot for a full 24 hours, wherever the day takes you."
+    flaw: "says hot instead of cold"
+  - id: T16
+    task: "Fix the bug: def average(xs): return sum(xs) / len(xs) - 1"
+    good: "def average(xs):\n    return sum(xs) / len(xs)\n# The original subtracted 1 from the result because of operator precedence."
+    flawed: "def average(xs):\n    return sum(xs) / (len(xs) - 1)\n# The original had the parentheses in the wrong place."
+    flaw: "divides by n-1, still wrong"
+  - id: T17
+    task: "A recipe for 4 people needs 300 g of flour. How much flour is needed for 10 people?"
+    good: "300 g / 4 = 75 g per person. 75 g x 10 = 750 g of flour."
+    flawed: "300 g / 4 = 75 g per person. 75 g x 10 = 7,500 g of flour."
+    flaw: "multiplication off by a factor of ten"
+  - id: T18
+    task: "State the order of the planets from the Sun, from Mercury to Neptune."
+    good: "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune."
+    flawed: "Mercury, Venus, Earth, Mars, Saturn, Jupiter, Uranus, Neptune."
+    flaw: "Jupiter and Saturn swapped"

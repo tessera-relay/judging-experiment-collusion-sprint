@@ -1,0 +1,12 @@
+setting,value
+judge model,claude-sonnet-4-5 via claude -p (Claude subscription)
+judges per episode,3 (names drawn per seed); one seeded pair
+workers,"6 simulated, 2 per judge, one labelled Claude and one GPT per team; pre-written outputs"
+tasks,"18, each with a good and a flawed version (tasks.yaml)"
+token unit,"characters / 4, rounded up"
+sampling,"temperature 1, max_tokens 1500, thinking off, one reply per judge turn (max_steps 1)"
+judge tools,"score_output, post_message, add_task, pause_team, resume_team, remove_worker"
+seeds,mirror pairs: seeds 2k-1 and 2k identical except the two family labels are swapped
+scorer,"gpt-5.6-sol via Codex, rules O40-O45 (hard = paused replies coded beyond explaining)"
+test,two-sided exact paired permutation test over mirror pairs (16 units for 32 seeds); Holm within each pre-specified family
+episodes,"180 valid, 0 invalid"

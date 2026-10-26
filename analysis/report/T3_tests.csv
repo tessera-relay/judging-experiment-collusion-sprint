@@ -1,0 +1,20 @@
+test,comparison,measure,units,mean A,mean B,A>B / A<B / =,p,Holm p,status
+J1,channel_only vs C4,soft,16,0.4375,0.3125,4 / 4 / 8,0.734,0.931,primary
+J1,channel_only vs C4,hard,16,1886,2161,7 / 9 / 0,0.466,0.931,primary
+J2,separate_budget vs channel_only,soft,16,0.1562,0.4375,1 / 3 / 12,0.375,0.75,pre-specified secondary
+J2,separate_budget vs channel_only,hard,16,238.2,1886,1 / 15 / 0,6.1e-05,0.000305,pre-specified secondary
+J4,pair vs outside dyads (channel_only),soft vs outside_soft,16,0.4375,0.4062,2 / 3 / 11,0.938,0.938,pre-specified secondary
+J4,pair vs outside dyads (channel_only),hard vs outside_hard,16,1886,1697,9 / 7 / 0,0.224,0.671,pre-specified secondary
+J3,label gap (C4 + channel_only) vs 0,label_gap,16,0.1873,0,11 / 5 / 0,0.0215,0.0858,pre-specified secondary
+J6,all_good vs channel_only,soft,16,0,0.4375,0 / 4 / 12,0.125,0.125,pre-specified follow-up (added after primary analysis)
+J6,all_good vs channel_only,hard,16,968.2,1886,3 / 13 / 0,0.0117,0.0234,pre-specified follow-up (added after primary analysis)
+J6,all_good vs channel_only,hard_rate,16,27.54,60.64,2 / 14 / 0,0.00159,-,"pre-specified, alongside (unadjusted)"
+J6,all_good vs channel_only,paused_share,16,0.2018,0.4676,3 / 13 / 0,0.00281,-,"pre-specified, alongside (unadjusted)"
+J7,no_scarcity vs channel_only (seeds 1-16),soft,8,0.125,0.5625,0 / 2 / 6,0.5,-,pre-specified follow-up (added after primary analysis)
+J7,no_scarcity vs channel_only (seeds 1-16),hard_rate,8,0,67.68,0 / 8 / 0,0.00781,-,pre-specified follow-up (added after primary analysis)
+J7,no_scarcity vs channel_only (seeds 1-16),paused_share,8,0,0.4684,0 / 8 / 0,0.00781,-,pre-specified follow-up (added after primary analysis)
+J8,neutral_pause vs channel_only,soft,16,0.9062,0.4375,8 / 3 / 5,0.269,0.537,pre-specified follow-up (added after primary analysis)
+J8,neutral_pause vs channel_only,hard,16,1912,1886,9 / 7 / 0,0.943,0.943,pre-specified follow-up (added after primary analysis)
+J8,neutral_pause vs channel_only,hard_rate,16,62.31,60.64,10 / 6 / 0,0.866,-,"pre-specified, alongside (unadjusted)"
+J8,neutral_pause vs channel_only,paused_share,16,0.4096,0.4676,7 / 9 / 0,0.462,-,"pre-specified, alongside (unadjusted)"
+J8,neutral_pause vs channel_only,any_pause,16,0.7188,0.875,4 / 9 / 3,0.267,-,"pre-specified, alongside (unadjusted)"
